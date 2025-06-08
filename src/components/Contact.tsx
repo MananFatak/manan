@@ -3,24 +3,57 @@ import { Button } from "@/components/ui/button";
 import { Mail, Phone } from "lucide-react";
 
 const Contact = () => {
-    
     const contactInfo = [
         {
-            icon: Mail,
+            icon: () => <Mail className="w-6 h-6 text-primary" />,
             label: "Email",
             value: "fatakmanan@gmail.com",
+            action: (
+                <Button variant="outline" asChild size="lg" className="w-full">
+                    <a href="mailto:fatakmanan@gmail.com" className="flex items-center justify-center gap-2">
+                        <Mail className="w-4 h-4" />
+                        Send Email
+                    </a>
+                </Button>
+            ),
         },
         {
-            icon: Phone,
+            icon: () => <Phone className="w-6 h-6 text-primary" />,
             label: "Phone",
             value: "+91 7984437123",
-        }
+            action: (
+                <Button variant="outline" asChild size="lg" className="w-full">
+                    <a href="tel:+917984437123" className="flex items-center justify-center gap-2">
+                        <Phone className="w-4 h-4" />
+                        Call Now
+                    </a>
+                </Button>
+            ),
+        },
+        {
+            icon: () => <i className="ri-linkedin-box-fill text-primary text-[22px]" />,
+            label: "LinkedIn",
+            value: "Manan Fatak",
+            action: (
+                <Button variant="outline" asChild size="lg" className="w-full">
+                    <a
+                        href="https://www.linkedin.com/in/fatak-manan/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2"
+                    >
+                        <i className="ri-linkedin-box-fill text-[18px]" />
+                        View Profile
+                    </a>
+                </Button>
+            ),
+        },
     ];
 
     return (
-        <section id="contact" className="py-20 px-4 bg-background">
-            <div className="container mx-auto max-w-4xl">
-                <div className="text-center mb-12">
+        <section id="contact" className="py-20 px-4 bg-background min-h-screen mt-14">
+            <div className="container mx-auto max-w-6xl">
+                <div className="text-center mb-20">
                     <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                         Get In Touch
                     </h2>
@@ -31,54 +64,29 @@ const Contact = () => {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6 mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                     {contactInfo.map((contact, index) => (
-                        <Card key={index} className="shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <CardHeader className="pb-4">
-                                <div className="flex items-center gap-4">
-                                    <div className="bg-primary/10 p-3 rounded-full">
-                                        <contact.icon className="w-6 h-6 text-primary" />
+                        <Card key={index} className="shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                            <CardHeader className="text-center pb-4">
+                                <div className="flex flex-col items-center gap-4">
+                                    <div className="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full">
+                                        {contact.icon()}
                                     </div>
-                                    <div>
-                                        <CardTitle className="text-lg font-semibold text-foreground">
-                                            {contact.label}
-                                        </CardTitle>
-                                    </div>
+                                    <CardTitle className="text-xl font-semibold text-foreground">
+                                        {contact.label}
+                                    </CardTitle>
                                 </div>
                             </CardHeader>
-                            <CardContent>
-                                <p className="text-zinc-800 dark:text-zinc-200">{contact.value}</p>
+                            <CardContent className="flex-1 flex flex-col justify-between space-y-6 pt-0">
+                                <p className="text-zinc-800 dark:text-zinc-200 break-words text-center text-base font-medium">
+                                    {contact.value}
+                                </p>
+                                <div className="mt-auto">
+                                    {contact.action}
+                                </div>
                             </CardContent>
                         </Card>
                     ))}
-                </div>
-
-                <div className="text-center">
-                    <Card className="shadow-lg bg-gradient-to-r from-primary/5 to-secondary/5">
-                        <CardContent className="p-8">
-                            <h3 className="text-2xl font-bold text-foreground mb-4">
-                                Let's Connect
-                            </h3>
-                            <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
-                                Whether you're looking for a dedicated mechanical engineer for your team
-                                or want to discuss innovative engineering solutions, I'd love to hear from you.
-                            </p>
-                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <Button asChild size="lg">
-                                    <a href="mailto:fatakmanan@gmail.com" className="flex items-center gap-2">
-                                        <Mail className="w-4 h-4" />
-                                        Send Email
-                                    </a>
-                                </Button>
-                                <Button variant="outline" asChild size="lg">
-                                    <a href="tel:+917984437123" className="flex items-center gap-2">
-                                        <Phone className="w-4 h-4" />
-                                        Call Now
-                                    </a>
-                                </Button>
-                            </div>
-                        </CardContent>
-                    </Card>
                 </div>
             </div>
         </section>
