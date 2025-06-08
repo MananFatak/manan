@@ -6,6 +6,8 @@ import Hero from "./components/Hero";
 import Responsibilities from "./components/Responsibilities";
 import ScrollToTop from "@/components/ScrollToTop";
 import ThemeToggle from "./components/ThemeToggle";
+import Projects from "./components/Projects";
+
 
 const App = () => {
     return (
@@ -17,6 +19,7 @@ const App = () => {
             <About />
             <Education />
             <Experience />
+            <Projects />
             <Responsibilities />
             <Contact />
         </div>
